@@ -35,7 +35,7 @@ void list_free(list_t *l);
 /* Prints the list in some format. */
 void list_print(list_t *l);
 
-/* returns string of List
+/* returns string of List */
 char* listToString(list_t *l);
 
 /* Returns the length of the list. */

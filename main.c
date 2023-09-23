@@ -1,51 +1,161 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
+#include <string.h>
 
 int main() {
-  int x;
-  printf("Write your Tests for your linked list implementation\n");
-  list_t *mylist;
-  mylist = list_alloc();
-  list_print(mylist);
-  list_add_to_front(mylist, 10);
-  list_add_to_front(mylist, 20);
-  list_add_to_front(mylist, 30);
-  list_print(mylist);
-  list_add_to_front(mylist, 40);
-  list_add_to_front(mylist, 50);
-  list_add_to_front(mylist, 60);
-  list_add_to_front(mylist, 70);
-  list_add_to_front(mylist, 80);
-  list_add_to_front(mylist, 90);
-  list_add_to_front(mylist, 100);
+  // int x;
+  printf("Tests for linked list implementation:\n");
+  printf("\n");
 
-  if(strcmp("100->90->80->70->60->50->40->30->20->10->NULL",listToString(mylist)) != 0)
+
+  // Tests for list_alloc()
+  printf("list_alloc():\n");
+  list_t* my_list;
+  my_list = list_alloc();
+
+  if(strcmp("NULL", listToString(my_list)) != 0)
   {
-        printf("list_add_to_front : FAILED\n");
+        printf("Initialize an empty linked list head: FAILED\n");
+  }
+  else {
+    printf("Initialize an empty linked list head: PASSED\n");
   }
 
-  list_print(mylist);
-  list_remove_at_index(mylist, 3);
-  list_print(mylist);
+  // reset test
+  list_free(my_list);
+  printf("\n");
 
-  if(strcmp("100->90->70->60->50->40->30->20->10->NULL",listToString(mylist)) != 0)
+
+  // Tests for list_add_to_back()
+  // Initialization
+  printf("list_add_to_back():\n");
+  my_list = list_alloc();
+
+  list_add_to_back(my_list, 6);
+  if(strcmp("6->NULL", listToString(my_list)) != 0)
   {
-        printf("list_remove_at_index : FAILED\n");
+    printf("Added to an empty list: FAILED\n");
+  }
+  else {
+    printf("Added to an empty list: PASSED\n");
   }
 
-  list_remove_at_index(mylist, 20);
-  list_print(mylist);
-  list_remove_at_index(mylist, 1);
-  list_print(mylist);
-  list_remove_at_index(mylist, 6);
-  list_print(mylist);
-
-  if(strcmp("90->80->60->50->30->20->10->NULL",listToString(mylist)) != 0)
+  list_add_to_back(my_list, 5);
+  list_add_to_back(my_list, 120);
+  if(strcmp("6->5->120->NULL", listToString(my_list)) != 0)
   {
-        printf("list_remove_at_index : FAILED\n");
+    printf("Added to a list with existing nodes: FAILED\n");
   }
-  
+  else {
+    printf("Added to a with existing nodes: PASSED\n");
+  }
+  // reset test
+  list_free(my_list);
+  printf("\n");
+
+
+  // Tests for list_length()
+  // Initialization
+  printf("list_length():\n");
+  my_list = list_alloc();
+
+  // Empty List
+  if(list_length(my_list) != 0)
+  {
+    printf("Added to the back of an empty list: FAILED\n");
+  }
+  else {
+    printf("Added to the back of  an empty list: PASSED\n");
+  }
+  // With members
+  list_add_to_back(my_list, 5);
+  list_add_to_back(my_list, 120);
+  list_add_to_back(my_list, 150);
+  list_add_to_back(my_list, 300);
+  list_add_to_back(my_list, 220);
+
+  if(list_length(my_list) != 5)
+  {
+    printf("Added to the back of a list with existing nodes: FAILED\n");
+  }
+  else {
+    printf("Added to added to the back of a with existing nodes: PASSED\n");
+  }
+  // reset test
+  list_free(my_list);
+  printf("\n");
+
+  // Tests for list_add_to_front()
+  // Initialization
+  printf("list_add_to_front():\n");
+  my_list = list_alloc();
+
+  list_add_to_front(my_list, 20);
+  // Empty List
+  if(strcmp("20->NULL",listToString(my_list)))
+  {
+    printf("Added to an empty list: FAILED\n");
+  }
+  else {
+    printf("Added to an empty list: PASSED\n");
+  }
+  // With members
+  list_add_to_front(my_list, 5);
+  list_add_to_front(my_list, 120);
+  list_add_to_front(my_list, 150);
+  list_add_to_front(my_list, 300);
+  list_add_to_front(my_list, 220);
+
+  if(strcmp("220->300->150->120->5->20->NULL",listToString(my_list)))
+  {
+    printf("Added to a list with existing nodes: FAILED\n");
+  }
+  else {
+    printf("Added to a with existing nodes: PASSED\n");
+  }
+  // reset test
+  list_free(my_list);
+  printf("\n");
+  // list_print(mylist);
+  // list_add_to_front(mylist, 10);
+  // list_add_to_front(mylist, 20);
+  // list_add_to_front(mylist, 30);
+  // list_print(mylist);
+  // list_add_to_front(mylist, 40);
+  // list_add_to_front(mylist, 50);
+  // list_add_to_front(mylist, 60);
+  // list_add_to_front(mylist, 70);
+  // list_add_to_front(mylist, 80);
+  // list_add_to_front(mylist, 90);
+  // list_add_to_front(mylist, 100);
+
+  // if(strcmp("100->90->80->70->60->50->40->30->20->10->NULL",listToString(mylist)) != 0)
+  // {
+  //       printf("list_add_to_front : FAILED\n");
+  // }
+
+  // list_print(mylist);
+  // list_remove_at_index(mylist, 3);
+  // list_print(mylist);
+
+  // if(strcmp("100->90->70->60->50->40->30->20->10->NULL",listToString(mylist)) != 0)
+  // {
+  //       printf("list_remove_at_index : FAILED\n");
+  // }
+
+  // list_remove_at_index(mylist, 20);
+  // list_print(mylist);
+  // list_remove_at_index(mylist, 1);
+  // list_print(mylist);
+  // list_remove_at_index(mylist, 6);
+  // list_print(mylist);
+
+  // if(strcmp("90->80->60->50->30->20->10->NULL",listToString(mylist)) != 0)
+  // {
+  //       printf("list_remove_at_index : FAILED\n");
+  // }
+  // 
 
   // printf("The list length is %d\n", list_length(mylist));
 
@@ -81,17 +191,17 @@ int main() {
   // list_print(mylist);
 
   // printf("Is %d in the list?: %d\n", 21, list_is_in(mylist, 21));
-  printf("Value at %d in the list?: %d\n", 3, list_get_elem_at(mylist, 3));
-  printf("Value at %d in the list?: %d\n", 5, list_get_elem_at(mylist, 5));
-  printf("Value at %d in the list?: %d\n", 0, list_get_elem_at(mylist, 0));
-  printf("Value at %d in the list?: %d\n", -2, list_get_elem_at(mylist, -2));
-  printf("Value at %d in the list?: %d\n", 12, list_get_elem_at(mylist, 12));
-  printf("Value at %d in the list?: %d\n", 7, list_get_elem_at(mylist, 7));
-  printf("Index of %d?: %d\n", 70, list_get_index_of(mylist, 70));
-  printf("Index of %d?: %d\n", 20, list_get_index_of(mylist, 20));
-  printf("Index of %d?: %d\n", 0, list_get_index_of(mylist, 0));
-  printf("Index of %d?: %d\n", 10, list_get_index_of(mylist, 10));
-  printf("Index of %d?: %d\n", 90, list_get_index_of(mylist, 90));
+  // printf("Value at %d in the list?: %d\n", 3, list_get_elem_at(mylist, 3));
+  // printf("Value at %d in the list?: %d\n", 5, list_get_elem_at(mylist, 5));
+  // printf("Value at %d in the list?: %d\n", 0, list_get_elem_at(mylist, 0));
+  // printf("Value at %d in the list?: %d\n", -2, list_get_elem_at(mylist, -2));
+  // printf("Value at %d in the list?: %d\n", 12, list_get_elem_at(mylist, 12));
+  // printf("Value at %d in the list?: %d\n", 7, list_get_elem_at(mylist, 7));
+  // printf("Index of %d?: %d\n", 70, list_get_index_of(mylist, 70));
+  // printf("Index of %d?: %d\n", 20, list_get_index_of(mylist, 20));
+  // printf("Index of %d?: %d\n", 0, list_get_index_of(mylist, 0));
+  // printf("Index of %d?: %d\n", 10, list_get_index_of(mylist, 10));
+  // printf("Index of %d?: %d\n", 90, list_get_index_of(mylist, 90));
   // printf("Index of %d?: %d\n", 81, list_get_index_of(mylist, 81));
   
   // list_free(mylist);
