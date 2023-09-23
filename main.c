@@ -352,12 +352,16 @@ int main() {
   list_free(my_list);
   printf("\n");
 
-// Tests for list_is_in()
+// Tests for list_get_elem_at()
   // Initialization
   printf("list_get_elem_at():\n");
   my_list = list_alloc();
 
-  elem elem1 = list_get_elem_at(my_list,200);
+  elem elem1;
+  elem elem2;
+  elem elem3;
+
+  elem1= list_get_elem_at(my_list,200);
   //
   // Empty List
   if(elem1 != -1)
@@ -375,116 +379,90 @@ int main() {
   list_add_to_back(my_list, 150);
   list_add_to_back(my_list, 300);
   list_add_to_back(my_list, 220);
-  // list_add_to_back(my_list, 210);
+  list_add_to_back(my_list, 210);
 
-  is_in_2 = list_is_in(my_list,210);
-  //
-  // Empty List
-  if(is_in_2 != false)
+  elem2 = list_get_elem_at(my_list,200);
+
+  // gets the last element
+  if(elem2 != 210)
   {
-    printf("Check if it is in a populated list(PRESENT): FAILED\n");
+    printf("Get element outside list when list is populated: FAILED\n");
   }
   else {
-    printf("Check if it is in a populated list(PRESENT): PASSED\n");
+    printf("Get element outside list when list is populated: PASSED\n");
   }
 
-  is_in_2 = list_is_in(my_list,210);
-  //
-  // Empty List
-  if(is_in_2 != false)
+
+  elem3 = list_get_elem_at(my_list,2);
+
+  // gets the last element
+  if(elem3 != 150)
   {
-    printf("Check if it is in a populated list(PRESENT): FAILED\n");
+    printf("Get element inside list when list is populated: FAILED\n");
   }
   else {
-    printf("Check if it is in a populated list(PRESENT): PASSED\n");
+    printf("Get element inside list when list is populated: PASSED\n");
+  }
+  // reset test
+  list_free(my_list);
+  printf("\n");
+
+
+// Tests for list_get_index_of()
+  // Initialization
+  printf("list_get_index_of():\n");
+  my_list = list_alloc();
+
+  int index1;
+  int index2;
+  int index3;
+
+  index1= list_get_index_of(my_list,200);
+  //
+  // Empty List
+  if(index1 != -1)
+  {
+    printf("Get index of absent when list is empty: FAILED\n");
+  }
+  else {
+    printf("Get index of absent when list is empty: PASSED\n");
   }
 
 
-  // // should remove the last element
-  // remove1 = list_remove_at_index(my_list, 300);
-  // if(strcmp("5->120->150->300->220->NULL",listToString(my_list))!=0 || remove1 != 210)
-  // {
-  //   printf("Remove from a given index(index > length(list)) of a populated list: FAILED\n");
-  // }
-  // else {
-  //   printf("Remove from a given index(index > length(list)) a populated list: PASSED\n");
-  // }
+  // construct the list
+  list_add_to_back(my_list, 5);
+  list_add_to_back(my_list, 120);
+  list_add_to_back(my_list, 150);
+  list_add_to_back(my_list, 300);
+  list_add_to_back(my_list, 220);
+  list_add_to_back(my_list, 210);
 
-  // remove1 = list_remove_at_index(my_list, 2);
-  // if(strcmp("5->120->300->220->NULL",listToString(my_list))!=0 || remove1 != 150)
-  // {
-  //   printf("Remove from a given index(index < length(list)) of a populated list: FAILED\n");
-  // }
-  // else {
-  //   printf("Remove from a given index(index < length(list)) a populated list: PASSED\n");
-  // }
+  index2 = list_get_index_of(my_list,700);
 
-
+  // gets the last element
+  if(index2 != -1)
+  {
+    printf("Get index of absent element when list is populated: FAILED\n");
+  }
+  else {
+    printf("Get index of absent element when list is populated: PASSED\n");
+  }
 
 
+  index3 = list_get_index_of(my_list,150);
 
-  // //Should add to the end of the list
-  // list_add_at_index(my_list, 300, 1000);
-  // // Empty List
-  // if(strcmp("20->300->NULL",listToString(my_list))!=0)
-  // {
-  //   printf("Added to a given index(index >= length(list)) of an empty list: FAILED\n");
-  // }
-  // else {
-  //   printf("Added to a given index(index >= length(list)) an empty list: PASSED\n");
-  // }
+  // gets the last element
+  if(index3 != 2)
+  {
+    printf("Get index of absent element when list is populated: FAILED\n");
+  }
+  else {
+    printf("Get element inside list when list is populated: PASSED\n");
+  }
+   // reset test
+  list_free(my_list);
+  printf("\n");
 
-
-
-  // // With members
-  // list_add_at_index(my_list, 420, 0);
-  // list_add_at_index(my_list, 660, 2);
-  // list_add_at_index(my_list, 122, 1);
-  // list_add_at_index(my_list, 330, 4);
-  // list_add_at_index(my_list, 111, 2);
-  // list_add_at_index(my_list, 440, 4);
-  // list_add_at_index(my_list, 110, 4);
-  // list_add_at_index(my_list, 123, 3);
-  // 
-  // if(strcmp("420->122->111->123->20->110->440->660->330->300->NULL",listToString(my_list))!=0)
-  // {
-  //   printf("Added to a list with existing nodes: FAILED\n");
-  // }
-  // else {
-  //   printf("Added to a with existing nodes: PASSED\n");
-  // }
-  // reset test
-  // list_free(my_list);
-  // printf("\n");
-
-
-  // // With members
-  // list_add_at_index(my_list, 420, 0);
-  // list_add_at_index(my_list, 660, 2);
-  // list_add_at_index(my_list, 122, 1);
-  // list_add_at_index(my_list, 330, 4);
-  // list_add_at_index(my_list, 111, 2);
-  // list_add_at_index(my_list, 440, 4);
-  // list_add_at_index(my_list, 110, 4);
-  // list_add_at_index(my_list, 123, 3);
-  // 
-  // if(strcmp("420->122->111->123->20->110->440->660->330->300->NULL",listToString(my_list))!=0)
-  // {
-  //   printf("Added to a list with existing nodes: FAILED\n");
-  // }
-  // else {
-  //   printf("Added to a with existing nodes: PASSED\n");
-  // }
-  // reset test
-
-
-  // list_add_to_back(mylist, 39);
-  // list_print(mylist);
-  // list_add_to_back(mylist, 18);
-  // list_add_to_back(mylist, 42);
-  // list_add_to_back(mylist, 190);
-  // list_print(mylist);
-  // list_free(mylist);
-  // list_print(mylist);
+ 
   return 0;
 }

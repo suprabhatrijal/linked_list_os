@@ -214,6 +214,9 @@ elem list_get_elem_at(list_t *l, int index) {
   return cur_node->value;
 }
 int list_get_index_of(list_t *l, elem value) { 
+  if(!l->head) {
+    return -1;
+  }
   node_t* cur_node = l->head;
   int index = 0;
 
