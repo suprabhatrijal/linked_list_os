@@ -294,6 +294,133 @@ int main() {
   else {
     printf("Remove from a given index(index < length(list)) a populated list: PASSED\n");
   }
+  // reset test
+  list_free(my_list);
+  printf("\n");
+
+// Tests for list_is_in()
+  // Initialization
+  printf("list_is_in():\n");
+  my_list = list_alloc();
+
+  bool is_in_1;
+  bool is_in_2;
+  bool is_in_3;
+  is_in_1 = list_is_in(my_list,500);
+  //
+  // Empty List
+  if(is_in_1 != false)
+  {
+    printf("Check if it is in an empty list: FAILED\n");
+  }
+  else {
+    printf("Check if it is in an empty list: PASSED\n");
+  }
+
+
+  // construct the list
+  list_add_to_back(my_list, 5);
+  list_add_to_back(my_list, 120);
+  list_add_to_back(my_list, 150);
+  list_add_to_back(my_list, 300);
+  list_add_to_back(my_list, 220);
+  // list_add_to_back(my_list, 210);
+
+  is_in_2 = list_is_in(my_list,210);
+  //
+  // Empty List
+  if(is_in_2 != false)
+  {
+    printf("Check if it is in a populated list(PRESENT): FAILED\n");
+  }
+  else {
+    printf("Check if it is in a populated list(PRESENT): PASSED\n");
+  }
+
+  is_in_2 = list_is_in(my_list,210);
+  //
+  // Empty List
+  if(is_in_2 != false)
+  {
+    printf("Check if it is in a populated list(ABSENT): FAILED\n");
+  }
+  else {
+    printf("Check if it is in a populated list(ABSENT): PASSED\n");
+  }
+
+  // reset test
+  list_free(my_list);
+  printf("\n");
+
+// Tests for list_is_in()
+  // Initialization
+  printf("list_get_elem_at():\n");
+  my_list = list_alloc();
+
+  elem elem1 = list_get_elem_at(my_list,200);
+  //
+  // Empty List
+  if(elem1 != -1)
+  {
+    printf("Get element at when list is empty: FAILED\n");
+  }
+  else {
+    printf("Get element at when list is empty: PASSED\n");
+  }
+
+
+  // construct the list
+  list_add_to_back(my_list, 5);
+  list_add_to_back(my_list, 120);
+  list_add_to_back(my_list, 150);
+  list_add_to_back(my_list, 300);
+  list_add_to_back(my_list, 220);
+  // list_add_to_back(my_list, 210);
+
+  is_in_2 = list_is_in(my_list,210);
+  //
+  // Empty List
+  if(is_in_2 != false)
+  {
+    printf("Check if it is in a populated list(PRESENT): FAILED\n");
+  }
+  else {
+    printf("Check if it is in a populated list(PRESENT): PASSED\n");
+  }
+
+  is_in_2 = list_is_in(my_list,210);
+  //
+  // Empty List
+  if(is_in_2 != false)
+  {
+    printf("Check if it is in a populated list(PRESENT): FAILED\n");
+  }
+  else {
+    printf("Check if it is in a populated list(PRESENT): PASSED\n");
+  }
+
+
+  // // should remove the last element
+  // remove1 = list_remove_at_index(my_list, 300);
+  // if(strcmp("5->120->150->300->220->NULL",listToString(my_list))!=0 || remove1 != 210)
+  // {
+  //   printf("Remove from a given index(index > length(list)) of a populated list: FAILED\n");
+  // }
+  // else {
+  //   printf("Remove from a given index(index > length(list)) a populated list: PASSED\n");
+  // }
+
+  // remove1 = list_remove_at_index(my_list, 2);
+  // if(strcmp("5->120->300->220->NULL",listToString(my_list))!=0 || remove1 != 150)
+  // {
+  //   printf("Remove from a given index(index < length(list)) of a populated list: FAILED\n");
+  // }
+  // else {
+  //   printf("Remove from a given index(index < length(list)) a populated list: PASSED\n");
+  // }
+
+
+
 
 
   // //Should add to the end of the list

@@ -200,6 +200,9 @@ bool list_is_in(list_t *l, elem value) {
 
 }
 elem list_get_elem_at(list_t *l, int index) { 
+  if(!l->head) {
+    return -1;
+  }
   node_t* cur_node = l->head;
   
   for (int i = 0; i < index; i += 1) {
