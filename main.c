@@ -93,12 +93,12 @@ int main() {
 
   list_add_to_front(my_list, 20);
   // Empty List
-  if(strcmp("20->NULL",listToString(my_list)))
+  if(strcmp("20->NULL",listToString(my_list))!=0)
   {
-    printf("Added to an empty list: FAILED\n");
+    printf("Added to the front of an empty list: FAILED\n");
   }
   else {
-    printf("Added to an empty list: PASSED\n");
+    printf("Added to the front of an empty list: PASSED\n");
   }
   // With members
   list_add_to_front(my_list, 5);
@@ -107,7 +107,59 @@ int main() {
   list_add_to_front(my_list, 300);
   list_add_to_front(my_list, 220);
 
-  if(strcmp("220->300->150->120->5->20->NULL",listToString(my_list)))
+  if(strcmp("220->300->150->120->5->20->NULL",listToString(my_list))!=0)
+  {
+    printf("Added to the front of a list with existing nodes: FAILED\n");
+  }
+  else {
+    printf("Added to the front of a with existing nodes: PASSED\n");
+  }
+  // reset test
+  list_free(my_list);
+  printf("\n");
+
+
+
+
+  // Tests for list_add_at_index()
+  // Initialization
+  printf("list_add_at_index():\n");
+  my_list = list_alloc();
+
+  list_add_at_index(my_list, 20, 0);
+  // Empty List
+  if(strcmp("20->NULL",listToString(my_list))!=0)
+  {
+    printf("Added to a given index(index < length(list)) of an empty list: FAILED\n");
+  }
+  else {
+    printf("Added to a given index(index < length(list)) an empty list: PASSED\n");
+  }
+
+  //Should add to the end of the list
+  list_add_at_index(my_list, 300, 1000);
+  // Empty List
+  if(strcmp("20->300->NULL",listToString(my_list))!=0)
+  {
+    printf("Added to a given index(index >= length(list)) of an empty list: FAILED\n");
+  }
+  else {
+    printf("Added to a given index(index >= length(list)) an empty list: PASSED\n");
+  }
+
+
+
+  // With members
+  list_add_at_index(my_list, 420, 0);
+  list_add_at_index(my_list, 660, 2);
+  list_add_at_index(my_list, 122, 1);
+  list_add_at_index(my_list, 330, 4);
+  list_add_at_index(my_list, 111, 2);
+  list_add_at_index(my_list, 440, 4);
+  list_add_at_index(my_list, 110, 4);
+  list_add_at_index(my_list, 123, 3);
+  
+  if(strcmp("420->122->111->123->20->110->440->660->330->300->NULL",listToString(my_list))!=0)
   {
     printf("Added to a list with existing nodes: FAILED\n");
   }
@@ -117,6 +169,40 @@ int main() {
   // reset test
   list_free(my_list);
   printf("\n");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // list_print(mylist);
   // list_add_to_front(mylist, 10);
   // list_add_to_front(mylist, 20);
