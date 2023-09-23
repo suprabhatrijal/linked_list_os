@@ -126,6 +126,9 @@ void list_add_at_index(list_t *l, elem value, int index) {
 }
 
 elem list_remove_from_back(list_t *l) {
+  if(!l->head) {
+    return -1;
+  }
   node_t* cur_node = l->head;
 
   node_t* prev_node = NULL;
@@ -143,6 +146,10 @@ elem list_remove_from_back(list_t *l) {
   return value;
 }
 elem list_remove_from_front(list_t *l) { 
+  if(!l->head) {
+    return -1;
+  }
+
   node_t* cur_node = l->head;
 
   elem value = cur_node->value;
@@ -155,7 +162,9 @@ elem list_remove_from_front(list_t *l) {
   return value;
 }
 elem list_remove_at_index(list_t *l, int index) { 
-  node_t*  cur_node = l->head;
+     if(!l->head) {
+      return -1;
+    } 
 
   if (index == 0) {
     return list_remove_from_front(l);
@@ -165,6 +174,7 @@ elem list_remove_at_index(list_t *l, int index) {
   }
   else {
     node_t* prev_node = NULL;
+    node_t*  cur_node = l->head;
     for (int i = 0; i < index ; i += 1) {
       prev_node = cur_node;
       cur_node = cur_node->next;
